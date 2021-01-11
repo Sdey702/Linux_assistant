@@ -1,0 +1,4 @@
+install espeak
+ubuntu 20.04
+python 3.6 or above
+model is offline speech recognition data  model
