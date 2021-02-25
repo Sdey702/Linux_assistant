@@ -1,7 +1,10 @@
 #from tkinter import *
+from speak import talk
 import os
 import threading
 import multiprocessing
+import requests 
+import bs4 
 # root = Tk()
 # user = StringVar()
 
@@ -75,16 +78,16 @@ def check_internet():
 def baby1():
     statement = ''
     try:
-        with sr.Microphone() as source:
-            print('listening...')
-            voice = listener.listen(source,2)
-            print(voice)
-            command = listener.recognize_google(voice)  
-            #command = listener.recognize_sphinx(voice,language="en-US")
-            command = command.lower()
-            print(command)
-            command = command.replace('listening','')
-            statement = command
+        # with sr.Microphone() as source:
+        #     print('listening...')
+        #     voice = listener.listen(source,2)
+        #     print(voice)
+        #     command = listener.recognize_google(voice)  
+        #     #command = listener.recognize_sphinx(voice,language="en-US")
+        #     command = command.lower()
+        #     print(command)
+        #     command = command.replace('listening','')
+            statement = talk()
             # if 'i am ' in command :
             #     command = command.replace('i am listening','')
             # # if oshan in command than execute
@@ -165,8 +168,8 @@ def run_baby1(command):
     elif 'tell me about' in command :
         speak("i am your friend ocean helping you is my game aske me")
     elif 'prime ministers' in command or 'president' in command or 'ceo' in command or 'chairman' in command or 'pri' in command :
-        speak('Here what we found in google') 
-        webbrowser.open('http://google.com/?#q='+command)
+        speak('Here what we found in web') 
+        webbrowser.open('https://google.com/search?q='+command)
     elif 'who ' in command or 'wikipedia' in command:
         person = command.replace('who is the','')
         if 'who is' in person :
@@ -178,7 +181,7 @@ def run_baby1(command):
             speak('according to wikipedia'+info)
         except:
             speak('what we found in web')
-            webbrowser.open('http://google.com/?#q='+command)
+            webbrowser.open('https://google.com/search?q='+command)
     elif 'who the heck is' in command:
         person = command.replace('who the heck is', '')
         info = wikipedia.summary(person, 1)
@@ -230,7 +233,7 @@ def run_baby1(command):
             t1.start()
             # os.system('gedit')
         else :
-                webbrowser.open('http://google.com/?#q='+voice)
+                webbrowser.open('https://google.com/search?q='+voice)
     elif 'exit' in command or 'tata' in command or 'goodbye' in command or 'quit' in command or 'bye bye' in command :
         speak("good bye dear have a great day")
         exit(1)
@@ -246,7 +249,7 @@ def run_baby1(command):
     else : 
         if command != '' :
             speak('Here what we found in web')
-            webbrowser.open('http://google.com/?#q='+command)
+            webbrowser.open('https://google.com/search?q='+command)
         else :
             pass
             

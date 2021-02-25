@@ -1,12 +1,19 @@
 # Python program to translate 
 # speech to text and text to speech 
 # tis use when we noice present
-
+import os
 import speech_recognition as sr 
 r = sr.Recognizer() 
 
 # Loop infinitely for user to 
 # speak 
+
+
+
+def speak(text):
+    #engine.say(text)
+    os.system('espeak "{}" '.format(text))
+
 
 def talk():
           
@@ -34,13 +41,15 @@ def talk():
 			
 	except sr.RequestError as e: 
 		print("Could not request results; {0}".format(e))
-		return "could not understand" 
+		speak("could not understand" )
+		#return "could not understand" 
 		
 	except sr.UnknownValueError: 
 		print("unknown error occured")
-		return "could not understand" 
+		speak("could not understand" )
+		#return "could not understand" 
 
 
 # use this function it reduce back word noice
-# print(talk())
-talk()
+#print(talk())
+#talk()

@@ -1,9 +1,12 @@
 import tkinter as tk
+#from tkinter import *
 import os
 import threading
 import multiprocessing
 from help import baby1,run_baby1
 root = tk.Tk()
+photo = tk.PhotoImage(file = 'info.png')
+root.iconphoto(False,photo)
 program = tk.StringVar()
 user = tk.StringVar()
 lisen = tk.StringVar()
@@ -219,7 +222,7 @@ def hi():
 
 if __name__ == "__main__":
     
-    root.title('My First GUI...')
+    root.title('Linux Assistant')
     root.geometry('500x300')
     root.configure(bg='white')
     im = tk.PhotoImage(file='images/pause.png')
