@@ -1,5 +1,6 @@
 # Linux_assistant
 Voice assistant for linux working both offline and online .
+Use in your system follow some step
 ## Features :
 ```
 1. In online it support many things like playing music ,weather of any city etc.
