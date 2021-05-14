@@ -3,8 +3,8 @@ Voice assistant for linux working both offline and online .<br>
 Use in your system follow some step.
 
 1. You have python 3.7 or grater vertion in your Linux system
-2. Goto this link download this file (https://drive.google.com/file/d/1XmuoJNK6pBkmoSAmdHrJKGwDVgOw98Kk/view?usp=sharing)  
-3.Unzip this file [YOU GET **dist** directory] 
+2. Goto this link download this file (https://drive.google.com/file/d/1XmuoJNK6pBkmoSAmdHrJKGwDVgOw98Kk/view?usp=sharing)<br>
+3.Unzip this file [YOU GET **dist** directory]<br>
 4.Open your terminal and go this directory path and execute **main** file **Using ./main  command**
 
 ## Features :
