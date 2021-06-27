@@ -9,10 +9,9 @@ Use in your system follow some step.
 5. Open your terminal and go this directory path and execute **main** file **Using ./main  command**
 
 ## Features :
-```
 1. In online it support many things like playing music ,weather of any city etc.
 2. In offline it support less features like open seeting,terminal,texteditor or it tell us time date.
-```
+
 ## Click on the image for demo of this project
 [![Demo of this project](images/Screenshot.png)](https://www.youtube.com/watch?v=A3JKLFbftW0&t=2s)
 
