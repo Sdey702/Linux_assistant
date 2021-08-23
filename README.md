@@ -1,6 +1,6 @@
 # Linux_assistant
 Voice assistant for linux working both offline and online .<br>
-Use in your system follow some step.
+**Do you want to use it in your local system then follow this steps:**
 
 1. You have python 3.7 or grater vertion in your Linux system
 2. Goto this link download this file (https://drive.google.com/file/d/1XmuoJNK6pBkmoSAmdHrJKGwDVgOw98Kk/view?usp=sharing)<br>
