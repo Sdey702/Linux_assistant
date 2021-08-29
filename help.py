@@ -1,17 +1,34 @@
-#from tkinter import *
 from speak import talk
 import os
 import threading
 import multiprocessing
 import requests 
 import bs4 
+
 # root = Tk()
 # user = StringVar()
+# check internet present or not
+import requests
+
+def check_internet():
+   url = "http://www.kite.com"
+   timeout = 5
+   try:
+      request = requests.get(url, timeout=timeout)
+      print("Connected to the Internet")
+      return True
+   except (requests. ConnectionError, requests. Timeout) as exception:
+      print("No internet connection.")
+      return False
+
+if check_internet():
+    import pywhatkit
 
 
 def speak(text):
     #engine.say(text)
     os.system('espeak "{}" '.format(text))
+
 
 #os access
   
@@ -22,7 +39,7 @@ def texteditor():
 def terminal():
     os.system('gnome-terminal')
 def files():
-    os.system('xdg-open /home/subhankar')
+    os.system('xdg-open /home')
 def cal():
     os.system('gnome-calculator')
 
@@ -41,69 +58,19 @@ from datetime import date
 today = date.today()
 
 
-try :
-    import pywhatkit
-except :
-    pass
-    
-
-
-
-
 listener = sr.Recognizer()
-    # engine = pyttsx3.init()
-    # engine.setProperty('rate', 185)
-    # voices = engine.getProperty('voices')   
-    # engine.setProperty('voice', voices[1].id) 
-    #os.system('espeak "{}" '.format(text))
 
-    # def speak(text):
-    #     #engine.say(text)
-    #     os.system('espeak "{}" '.format(text))
-    #     # tts = gTTS(text = text,lang ='en')
-    #     # tts.save('hello.mp3')
-    #     # os.system("mpg321 hello.mp3")
-import socket
-def check_internet():
-     IPaddress=socket. gethostbyname(socket. gethostname())
-     if IPaddress=="127.0.0.2" or IPaddress=="127.0.0.1":
-        print("No internet, your localhost is "+ IPaddress)
-        return False
-     else:
-        print("Connected, with the IP address: "+ IPaddress )
-        return True
-  
+
 
 
 def baby1():
     statement = ''
     try:
-        # with sr.Microphone() as source:
-        #     print('listening...')
-        #     voice = listener.listen(source,2)
-        #     print(voice)
-        #     command = listener.recognize_google(voice)  
-        #     #command = listener.recognize_sphinx(voice,language="en-US")
-        #     command = command.lower()
-        #     print(command)
-        #     command = command.replace('listening','')
-            statement = talk()
-            # if 'i am ' in command :
-            #     command = command.replace('i am listening','')
-            # # if oshan in command than execute
-            # if 'covid' in command or 'covit' in command:
-            #     command = command.replace('covid','')
-            #     command = command.replace('listening','')
-            #     statement = command
-            #     print(command)
-            # else :
-            #     #pass
-            #     print(command)
-            #     command = command.replace('listening','')
-            #     statement = command
+      statement = talk()
+      print('############################',statement)
     except:
-        #speak("I can't understand ")
-        pass
+      #speak("I can't understand ")
+      pass
 
 
     return statement
@@ -132,9 +99,9 @@ def weather(city):
         # print ("-------------------------------------------------------------")
 
         a = "Current temperature is {:.2f} degree".format(temp_city)
-        b = "Current weather description is {}".format(weather_desc)
-        c = "Current atmosphere Humidity is {} %".format(hmdt)
-        d = "Current wind speed is {} kilometar per hour".format(wind_spd)
+        b = " Current weather description is {}".format(weather_desc)
+        c = " Current atmosphere Humidity is {} %".format(hmdt)
+        d = " Current wind speed is {} kilometar per hour".format(wind_spd)
 
         weather = a+b+c+d
         print(weather)
@@ -147,12 +114,10 @@ def check_weather() :
     return
     
 # write logic use elif condition and give the solution
-def run_baby1(command):
-    
 
-    if 'play' in command or 'playing' in command :
-        if check_internet():
-            import pywhatkit
+def run_baby1(command):
+
+    if 'play' in command or 'playing' in command : 
         song = command.replace('sing','')
         if 'music' in command :
             song = command.replace('play','')
@@ -165,8 +130,6 @@ def run_baby1(command):
             pywhatkit.playonyt(song)
     elif 'i love you' in command :
         speak("i love you two sir I'm hear all time For you")
-    elif 'tell me about' in command :
-        speak("i am your friend ocean helping you is my game aske me")
     elif 'prime ministers' in command or 'president' in command or 'ceo' in command or 'chairman' in command or 'pri' in command :
         speak('Here what we found in web') 
         webbrowser.open('https://google.com/search?q='+command)
@@ -186,7 +149,7 @@ def run_baby1(command):
         person = command.replace('who the heck is', '')
         info = wikipedia.summary(person, 1)
         speak('according to wikipedia'+info)
-    elif 'open' in command or 'opening' in command :
+    elif 'open' in command or 'opening' in command or 'editor' in command :
         voice = command.replace('open','')
         if 'opening' in command :
                 voice = command.replace('opening','')
@@ -253,4 +216,3 @@ def run_baby1(command):
         else :
             pass
             
-   

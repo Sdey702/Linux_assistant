@@ -3,12 +3,78 @@ import tkinter as tk
 import os
 import threading
 import multiprocessing
-from help import baby1,run_baby1
+from help import run_baby1
+from speak import talk
+
+
+##### speak duplicate
+
+# Python program to translate 
+# speech to text and text to speech 
+# tis use when we noice present
+import os
+# from main import root,program2;
+import speech_recognition as sr 
+r = sr.Recognizer() 
+
+# Loop infinitely for user to 
+# speak 
+
+
+
+def speak(text):
+    #engine.say(text)
+    os.system('espeak "{}" '.format(text))
+
+
+def say():
+          
+	# Exception handling to handle 
+	# exceptions at the runtime 
+	try: 
+		
+		# use the microphone as source for input. 
+		with sr.Microphone() as source2: 
+			
+			# wait for a second to let the recognizer 
+			# adjust the energy threshold based on 
+			# the surrounding noise level 
+			r.adjust_for_ambient_noise(source2, duration=0.5) 
+			program2.set("leassening...")
+			root.update()
+			#listens for the user's input 
+			audio2 = r.listen(source2) 
+			
+			# Using ggogle to recognize audio 
+			MyText = r.recognize_google(audio2) 
+			MyText = MyText.lower() 
+
+			print("Did you say "+MyText) 
+			return MyText 
+			
+	except sr.RequestError as e: 
+		print("Could not request results; {0}".format(e))
+		speak("could not understand" )
+		#return "could not understand" 
+		
+	except sr.UnknownValueError: 
+		print("unknown error occured")
+		speak("could not understand" )
+		#return "could not understand" 
+
+
+# use this function it reduce back word noice
+#print(talk())
+#talk()
+#######
+
+
+
 root = tk.Tk()
 photo = tk.PhotoImage(file = 'info.png')
 root.iconphoto(False,photo)
 program = tk.StringVar()
-user = tk.StringVar()
+program2 = tk.StringVar()
 lisen = tk.StringVar()
 
 def speak(text):
@@ -24,39 +90,59 @@ def texteditor():
 def terminal():
     os.system('gnome-terminal')
 def files():
-    os.system('xdg-open /home/subhankar')
+    os.system('xdg-open /home')
 def cal():
     os.system('gnome-calculator')
 
 # T2 = threading.Thread(target=seeting) 
 
-try :
-    import pywhatkit
-except :
+# check internet present or not
+import requests
+
+def check_internet():
+   url = "http://www.kite.com"
+   timeout = 5
+   try:
+      request = requests.get(url, timeout=timeout)
+      print("Connected to the Internet")
+      return True
+   except (requests. ConnectionError, requests. Timeout) as exception:
+      print("No internet connection.")
+      return False
+
+
+if check_internet() :
+    pass
+else:
     program.set('no internet you have use just some feture')
     root.update()
 
 
-import socket
-def check_internet():
-     IPaddress=socket. gethostbyname(socket. gethostname())
-     if IPaddress=="127.0.0.2" or IPaddress=="127.0.0.1":
-        print("No internet, your localhost is "+ IPaddress)
-        return False
-     else:
-        print("Connected, with the IP address: "+ IPaddress )
-        return True
+# import socket
+# def check_internet():
+#      IPaddress=socket. gethostbyname(socket. gethostname())
+#      if IPaddress=="127.0.0.2" or IPaddress=="127.0.0.1":
+#         print("No internet, your localhost is "+ IPaddress)
+#         return False
+#      else:
+#         print("Connected, with the IP address: "+ IPaddress )
+#         return True
   
 
 
 def hello():
     if check_internet():
-       lisen.set("lisitening...")
-       root.update()
-       b = baby1()
-       run_baby1(b)
+       b = say()
+       if b == None :
+           pass
+       else : 
+        program2.set(b)
+        root.update()
+        run_baby1(b)
     else:
-       speak('no internet please use anather button')
+        program2.set('')
+        root.update()
+        speak('no internet please use anather button')
 
 
 
@@ -214,37 +300,37 @@ def hi():
   if check_internet() == False:
      no_internet(1)
   else:
-    speak('internet present')
+    speak('internet present use anather button')
      
 
 
 # main
+try :
 
-if __name__ == "__main__":
-    
-    root.title('Linux Assistant')
-    root.geometry('500x300')
-    root.configure(bg='white')
-    im = tk.PhotoImage(file='images/pause.png')
-    im = im.subsample(2,2)
-    # label0 = Label(root ,text = 'liseaning....',bg='white')
-    # label0.pack()
-    label1 = tk.Label(root ,textvariable = user,bg='white')
-    label1.pack()
-    btn1 = tk.Button(root,width=50,height=60,activebackground='white',bg='green',borderwidth=4,image=im,command = hello)
-    btn1.pack()
-    label4 = tk.Label(root,text='use when internet present')
-    label4.pack()
-    label = tk.Label(root ,textvariable = program,bg='white')
-    label.pack()
-    btn2 = tk.Button(root,width=50,height=60,activebackground='red',bg='yellow',borderwidth=4,image=im,command=hi)
-    btn2.pack()
-    lable3 = tk.Label(root,text='use when internet not present')
-    lable3.pack()
-    #p1 = multiprocessing.Process(target=main)
-    #ain()
-    #label = Label(root ,textvariable = program,bg='white')
-    #label.pack()
+    if __name__ == "__main__":
+        
+        root.title('Linux Assistant')
+        root.geometry('500x300')
+        root.configure(bg='white')
+        im = tk.PhotoImage(file='images/pause.png')
+        im = im.subsample(2,2)
+        # label0 = Label(root ,text = 'liseaning....',bg='white')
+        # label0.pack()
+        label1 = tk.Label(root ,textvariable = program2,bg='white')
+        label1.pack()
+        btn1 = tk.Button(root,width=50,height=60,activebackground='white',bg='green',borderwidth=4,image=im,command = hello)
+        btn1.pack()
+        label4 = tk.Label(root,text='use when internet present')
+        label4.pack()
+        label = tk.Label(root ,textvariable = program,bg='white')
+        label.pack()
+        btn2 = tk.Button(root,width=50,height=60,activebackground='red',bg='yellow',borderwidth=4,image=im,command=hi)
+        btn2.pack()
+        lable3 = tk.Label(root,text='use when internet not present')
+        lable3.pack()
 
-    root.mainloop()
+        root.mainloop()
+
+except :
+    print('Error !')
 

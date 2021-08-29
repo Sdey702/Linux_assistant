@@ -2,6 +2,7 @@
 # speech to text and text to speech 
 # tis use when we noice present
 import os
+# from main import root,program2;
 import speech_recognition as sr 
 r = sr.Recognizer() 
 
@@ -28,7 +29,6 @@ def talk():
 			# adjust the energy threshold based on 
 			# the surrounding noise level 
 			r.adjust_for_ambient_noise(source2, duration=0.5) 
-			
 			#listens for the user's input 
 			audio2 = r.listen(source2) 
 			
